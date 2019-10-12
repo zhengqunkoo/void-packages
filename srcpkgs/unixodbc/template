@@ -17,6 +17,10 @@ libodbc_package() {
 	short_desc="ODBC library for Unix"
 	pkg_install() {
 		vmove "usr/lib/*.so.*"
+		cd ${DESTDIR}/usr/lib
+		for f in libodbc.so.2 libodbccr.so.2 libodbcinst.so.2; do
+			ln -sfr ${f} ${f/%2/1}
+		done
 	}
 }
 
