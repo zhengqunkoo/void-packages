@@ -3502,3 +3502,5 @@ liblog4c.so.3 log4c-1.2.4_1
 libqb.so.0 libqb-1.0.5_1
 libusbguard.so.0 usbguard-0.7.5_1
 libknet.so.1 libknet1-1.11_1
+libodbc.so.1 unixodbc-2.3.7_2
+libodbcinst.so.1 unixodbc-2.3.7_2
