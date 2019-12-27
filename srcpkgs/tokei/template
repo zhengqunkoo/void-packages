@@ -1,14 +1,14 @@
 # Template file for 'tokei'
 pkgname=tokei
-version=9.1.1
+version=10.1.0
 revision=1
 build_style=cargo
 short_desc="Count lines of code"
 maintainer="Joseph LaFreniere <joseph@lafreniere.xyz>"
 license="Apache-2.0, MIT"
 homepage="https://github.com/Aaronepower/tokei"
-distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=3b03edf37795312a1781a5d0aa86fffea6b0bd2de3da7ea18399b43e0a2b9229
+distfiles="https://github.com/Aaronepower/tokei/archive/v${version}.tar.gz"
+checksum=86b741d32850b267dcaaad244de8b821b0bd64678b83428b0150820bd963e697
 
 post_install() {
 	vlicense LICENCE-MIT

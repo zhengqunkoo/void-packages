@@ -1,6 +1,6 @@
 # Template file for 'prison'
 pkgname=prison
-version=5.57.0
+version=5.65.0
 revision=1
 build_style=cmake
 hostmakedepends="kcoreaddons extra-cmake-modules qt5-tools"
@@ -10,7 +10,7 @@ maintainer="John <johnz@posteo.net>"
 license="MIT"
 homepage="https://community.kde.org/Frameworks"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/prison-${version}.tar.xz"
-checksum=6613decb2e0b61af5af3a3a9995970c2fdaa72f36bcfd7e9db547017ee4ca235
+checksum=8dd4400817b4863597eb87fafce27f6cb11ad8a1f4da7491e4c9e4dcaa2fdff1
 
 if [ "$CROSS_BUILD" ];then
 	hostmakedepends+=" qt5-qmake qt5-host-tools"

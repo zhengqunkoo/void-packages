@@ -1,6 +1,6 @@
 # Template file for 'kscreenlocker'
 pkgname=kscreenlocker
-version=5.15.4
+version=5.17.4
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -13,7 +13,7 @@ maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
 homepage="https://projects.kde.org/projects/plasma/kscreenlocker"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=d81e34ac9f22b2fd9ed63e599e9c709e91ecd0b5e7458732e4535a71ce5a9f58
+checksum=9c7d0d5efad6a8d28889b75b08f17b074000959f03ed2c78b7f69e0af6c1466c
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" wayland-devel"

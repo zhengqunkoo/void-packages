@@ -1,15 +1,15 @@
 # Template file for 'hwids'
 pkgname=hwids
-version=20190316
+version=20191025
 revision=1
 archs=noarch
 wrksrc="hwids-hwids-${version}"
 short_desc="Hardware Identification Databases"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/gentoo/hwids"
 distfiles="https://github.com/gentoo/hwids/archive/hwids-${version}.tar.gz"
-checksum=e4498020b2c1a1ea5faf1e9d30bda0ae161aaf8e8fb17f40e1c6b8dc896c5d9e
+checksum=aa4551217c9d9e980a1229273376a8813ecb34a5f190e8d3c0e6ed8ebd20bfae
 
 do_install() {
 	vmkdir usr/share/hwdata

@@ -1,14 +1,14 @@
 # Template file for 'cJSON'
 pkgname=cJSON
-version=1.7.11
-revision=1
+version=1.7.12
+revision=2
 build_style=cmake
 short_desc="Ultralightweight JSON parser in ANSI C"
-maintainer="maxice8 <thinkabit.ukim@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://github.com/DaveGamble/cJSON"
 distfiles="https://github.com/DaveGamble/cJSON/archive/v${version}.tar.gz"
-checksum=17ace0e31ebd639906983b05fe1d51576b948ca5411c2162f55dd34c122162ca
+checksum=760687665ab41a5cff9c40b1053c19572bcdaadef1194e5cba1b5e6f824686e7
 
 post_install() {
 	vlicense LICENSE

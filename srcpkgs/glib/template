@@ -1,6 +1,6 @@
 # Template file for 'glib'
 pkgname=glib
-version=2.60.1
+version=2.62.3
 revision=1
 build_style=meson
 configure_args="-Dfam=false -Dman=true -Dselinux=disabled
@@ -9,15 +9,14 @@ hostmakedepends="pkg-config libxslt docbook-xsl $(vopt_if gtk_doc gtk-doc)"
 makedepends="zlib-devel pcre-devel libffi-devel dbus-devel elfutils-devel libmount-devel"
 checkdepends="desktop-file-utils shared-mime-info tzdata"
 short_desc="GNU library of C routines"
-maintainer="Rasmus Thomsen <oss@cogitri.dev>"
+maintainer="Enno Boland <gottox@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://wiki.gnome.org/Projects/GLib"
 changelog="https://gitlab.gnome.org/GNOME/glib/raw/master/NEWS"
 distfiles="${GNOME_SITE}/glib/${version%.*}/glib-${version}.tar.xz"
-checksum=89f884f5d5c6126140ec868cef184c42ce72902c13cd08f36e660371779b5560
+checksum=4400adc9f0d3ffcfe8e84225210370ce3f9853afb81812ddadb685325aa655c4
 
 build_options="gtk_doc"
-
 desc_option_gtk_doc="Build GTK API docs"
 
 if [ -z "$CROSS_BUILD" ]; then
@@ -59,5 +58,8 @@ glib-devel_package() {
 		for f in aclocal glib-2.0 gdb; do
 			vmove usr/share/${f}
 		done
+		if [ -d $DESTDIR/usr/share/gtk-doc ]; then
+			vmove usr/share/gtk-doc
+		fi
 	}
 }

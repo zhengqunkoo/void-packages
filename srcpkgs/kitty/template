@@ -1,11 +1,11 @@
 # Template file for 'kitty'
 pkgname=kitty
-version=0.13.3
+version=0.15.1
 revision=2
 pycompile_dirs="usr/lib/kitty"
 hostmakedepends="ncurses pkg-config python3 wayland-devel wayland-protocols"
 makedepends="gettext-devel glfw-devel harfbuzz-devel libxkbcommon-devel
- python3-devel wayland-devel wayland-protocols"
+ python3-devel wayland-devel wayland-protocols libcanberra-devel"
 depends="kitty-terminfo-${version}_${revision}"
 short_desc="Modern, hackable, featureful, OpenGL based terminal emulator"
 maintainer="Benjamin Slade <slade@jnanam.net>"
@@ -13,9 +13,16 @@ license="GPL-3.0-or-later"
 homepage="https://sw.kovidgoyal.net/kitty/"
 changelog="https://sw.kovidgoyal.net/kitty/changelog.html"
 distfiles="https://github.com/kovidgoyal/kitty/releases/download/v${version}/kitty-${version}.tar.xz"
-checksum=37b90f3467c31ee9f0338c066563ab2ec2eac56267286bc4ef6d9850f97f1507
+checksum=d48cfc5f489e17642baec84fa91aa484e088152166c7a419e08394e3ac61161f
+patch_args="-Np1"
 pycompile_version="$py3_ver"
 LDFLAGS+=" -Wl,-z,stack-size=2097152"
+
+# TIOCSWINSZ on ppc overflows signed int, used in ioctl()
+# glibc defines it with ulong, musl with int (should be harmless)
+case "$XBPS_TARGET_MACHINE" in
+	ppc*-musl) CFLAGS+=" -Wno-error=overflow";;
+esac
 
 do_build() {
 	if [ "$CROSS_BUILD" ]; then
@@ -25,7 +32,7 @@ do_build() {
 		*-musl)
 			vsed -e 's/pow10/pow_10/g' -i kitty/parser.c;;
 	esac
-	python3 setup.py linux-package --prefix=${DESTDIR}/usr --verbose
+	python3 setup.py linux-package --prefix=${DESTDIR}/usr --update-check-interval=0 --verbose
 }
 
 do_install() {

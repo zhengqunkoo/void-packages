@@ -18,10 +18,6 @@ checksum="3c547c146340fb16d4134326e7524bfb28ffa681284f1e3914bde1c27a9182bf
 post_extract() {
 	rm -r git
 	mv ../git-$_git_version git
-
-	case "$XBPS_TARGET_MACHINE" in
-		*-musl) sed -i 's/NO_CURL=1/NO_CURL=1 NO_REGEX=NeedsStartEnd/' Makefile ;;
-	esac
 }
 
 pre_build() {
@@ -31,7 +27,8 @@ pre_build() {
 }
 
 do_build() {
-	make CC=$CC CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" prefix=/usr ${makejobs} all doc-man
+	make NO_REGEX=NeedsStartEnd CC=$CC CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
+		prefix=/usr ${makejobs} all doc-man
 }
 
 do_check() {
@@ -39,6 +36,6 @@ do_check() {
 }
 
 do_install() {
-	make CC=$CC CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" prefix=/usr DESTDIR=${DESTDIR} \
-		CGIT_SCRIPT_PATH=/usr/share/webapps/cgit install install-man
+	make NO_REGEX=NeedsStartEnd CC=$CC CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
+		prefix=/usr DESTDIR=${DESTDIR} install install-man
 }

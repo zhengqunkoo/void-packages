@@ -1,6 +1,6 @@
 # Template file for 'mate-power-manager'
 pkgname=mate-power-manager
-version=1.20.3
+version=1.22.2
 revision=1
 build_style=gnu-configure
 configure_args="--disable-schemas-compile"
@@ -9,8 +9,8 @@ makedepends="libcanberra-devel libgnome-keyring-devel libmate-panel-devel
  libnotify-devel upower-devel"
 depends="dconf upower"
 short_desc="Power management tool for the MATE desktop"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 distfiles="https://pub.mate-desktop.org/releases/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=25435fa01c18e11d7d26c113e59bf0be35fbfa705c8abd86c1baf7d98a3ca49f
+checksum=76d1ce28b812ba0fd118d5aa529538072cef1336ae76aea1832ecc00fc91f68a

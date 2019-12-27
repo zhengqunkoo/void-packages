@@ -1,15 +1,16 @@
 # Template file for 'whois'
 pkgname=whois
-version=5.4.2
+version=5.5.3
 revision=1
+wrksrc=whois
 hostmakedepends="perl pkg-config"
 makedepends="libidn2-devel"
 short_desc="Improved whois client"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://www.linux.it/~md/software"
 distfiles="${DEBIAN_SITE}/main/w/${pkgname}/${pkgname}_${version}.tar.xz"
-checksum=eee33a3b3a56912fbf115a7dd24ed60314e2707a3ad6aa604ca2752c1ed01f57
+checksum=55c33f9c2a01c0cf1d6449ece63b0c26ef45aab63cf5f01c18459df0e341ab46
 
 alternatives="
  whois:whois:/usr/bin/gwhois
@@ -23,4 +24,14 @@ do_install() {
 	make prefix=/usr BASEDIR=${DESTDIR} install-whois
 	mv ${DESTDIR}/usr/bin/{whois,gwhois}
 	mv ${DESTDIR}/usr/share/man/man1/{whois,gwhois}.1
+}
+
+mkpasswd_package() {
+	short_desc="Feature-rich front end to crypt(3) password encryption"
+	alternatives="mkpasswd:mkpasswd:/usr/bin/gmkpasswd
+	 mkpasswd:mkpasswd.1:/usr/share/man/man1/gmkpasswd.1"
+	pkg_install() {
+		vbin mkpasswd gmkpasswd
+		vman mkpasswd.1 gmkpasswd.1
+	}
 }

@@ -1,16 +1,16 @@
 # Template file for 'jenkins'
 pkgname=jenkins
-version=2.164.1
+version=2.204.1
 revision=1
 build_style=fetch
 make_dirs="/var/lib/jenkins 0755 jenkins jenkins"
 depends="virtual?java-runtime"
 short_desc="Open source automation server"
-maintainer="Renato Aguiar <renato@renag.me>"
+maintainer="Renato Aguiar <renato@renatoaguiar.net>"
 license="MIT"
 homepage="https://jenkins.io/"
 distfiles="http://mirrors.jenkins.io/war-stable/${version}/jenkins.war"
-checksum=65543f5632ee54344f3351b34b305702df12393b3196a95c3771ddb3819b220b
+checksum=12b9ebbf9eb1cd1deab0d11512511bcd80a5d3a754dffab54dd6385d788d5284
 # Create 'jenkins' user
 system_accounts="jenkins"
 jenkins_homedir="/var/lib/jenkins"

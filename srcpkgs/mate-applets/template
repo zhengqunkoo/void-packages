@@ -1,6 +1,6 @@
 # Template file for 'mate-applets'
 pkgname=mate-applets
-version=1.20.3
+version=1.22.2
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static --enable-ipv6"
@@ -11,11 +11,11 @@ makedepends="NetworkManager-devel gtksourceview-devel libSM-devel libgtop-devel
  upower-devel wireless_tools-devel"
 depends="mate-icon-theme mate-applets-data-${version}_${revision}"
 short_desc="Applets for MATE panel"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 distfiles="https://pub.mate-desktop.org/releases/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=aeccbd2100fe0b2cb09096b395e957a7e538f2092961710771fdc6487900a578
+checksum=0c47d69fdecda40231d021cb72594c479e01a4d4b7f49c9550731a9fe7cc62b0
 
 case "$XBPS_TARGET_MACHINE" in
 	i686|x86_64)

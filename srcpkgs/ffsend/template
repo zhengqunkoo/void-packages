@@ -1,6 +1,6 @@
 # Template file for 'ffsend'
 pkgname=ffsend
-version=0.2.45
+version=0.2.57
 revision=1
 build_style=cargo
 hostmakedepends="pkg-config"
@@ -10,8 +10,4 @@ maintainer="Jasper Chan <jasperchan515@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/timvisee/ffsend"
 distfiles="https://github.com/timvisee/ffsend/archive/v${version}.tar.gz"
-checksum=cb2dcc422f4347302beed5adb3f9a5d2d89719f9f98d0c19a21b9806f56d564b
-
-case "$XBPS_TARGET_MACHINE" in
-	i686) broken="undefined reference to 'time::NSEC_PER_SEC'" ;;
-esac
+checksum=fcf789cdd8d5abb746834e695aa323220b8c284f3f9cce3ceefc48167a63ac5f

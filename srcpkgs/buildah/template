@@ -1,6 +1,6 @@
 # Template file for 'buildah'
 pkgname=buildah
-version=1.7.3
+version=1.12.0
 revision=1
 build_style=go
 go_import_path=github.com/containers/buildah
@@ -9,27 +9,21 @@ go_build_tags=containers_image_ostree_stub
 hostmakedepends="pkg-config go-md2man"
 makedepends="libostree-devel libbtrfs-devel device-mapper-devel gpgme-devel
  libassuan-devel libseccomp-devel"
-depends="runc skopeo"
-short_desc="OCI image building tool"
-maintainer="Cameron Nemo <camerontnorman@gmail.com>"
+depends="runc containers.image"
+short_desc="Dockerfile compatible OCI image building tool"
+maintainer="Cameron Nemo <cnemo@tutanota.com>"
 license="Apache-2.0"
 homepage="https://github.com/containers/buildah"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=26b453ba9e5f055171b72cb0cba1401f2dc2a00324bde7817524eae8f4228790
-
-case "$XBPS_TARGET_ARCH" in
-	*-musl) broken="/lib/libmount.so.1: undefined reference to getrandom" ;;
-esac
+checksum=1f54ad687eda6d5ab2fee5e86e6584787c5340506b6952b8b9461b9dbc15ba84
 
 post_build() {
-	make -C docs
+	make -C docs GOMD2MAN=go-md2man
 }
 
 post_install() {
 	vinstall contrib/completions/bash/buildah 644 /usr/share/bash-completion/completions
-	vinstall tests/registries.conf 644 /etc/containers
 	for _i in docs/*.1; do
 		vman $_i
 	done
-	vlicense LICENSE
 }

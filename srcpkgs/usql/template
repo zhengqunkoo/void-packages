@@ -1,16 +1,16 @@
 # Template file for 'usql'
 pkgname=usql
-version=0.7.3
+version=0.7.7
 revision=1
 build_style=go
 go_import_path=github.com/xo/usql
 hostmakedepends="git"
 short_desc="Universal command-line interface for SQL databases"
-maintainer="maxice8 <thinkabit.ukim@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://github.com/xo/usql"
 distfiles="https://github.com/xo/usql/archive/v${version}.tar.gz"
-checksum=a8fc78df708aaad36f5fa7afe9b0e46fabf5f6fa161b41f6b9a75c557c320f20
+checksum=beccd8bbd586a1e165dffdb15a932271749b8b12e729a5f1162a2f3f729f8f6e
 
 post_install() {
 	vlicense LICENSE

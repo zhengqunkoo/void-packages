@@ -1,11 +1,11 @@
 # Template file for 'telegram-desktop'
 pkgname=telegram-desktop
-version=1.6.7
-revision=1
-_libtgvoip_commit=e7010506210fbb3a6704d7ac1276b3334f9ab6c9
+version=1.8.15
+revision=2
+_libtgvoip_commit=d4a0f719ffd8d29e88474f67abc9fc862661c3b9
 _GSL_commit=d846fe50a3f0bb7767c7e087a05f4be95f4da0ec
 _variant_commit=550ac2f159ca883d360c196149b466955c77a573
-_crl_commit=84072fba75f14620935e5e91788ce603daeb1988
+_crl_commit=52baf11aaeb7f5ea6955a438abaa1aee4c4308d8
 _Catch_commit=5ca44b68721833ae3731802ed99af67c6f38a53a
 wrksrc="tdesktop-${version}"
 build_wrksrc="Telegram"
@@ -16,8 +16,9 @@ configure_args="-DENABLE_CRASH_REPORTS=OFF -DENABLE_GTK_INTEGRATION=ON
 hostmakedepends="pkg-config qt5-qmake qt5-host-tools python"
 makedepends="alsa-lib-devel ffmpeg-devel gtk+3-devel libappindicator-devel
  libdbusmenu-glib-devel libopenal-devel minizip-devel opus-devel xxHash-devel
- $(vopt_if pulseaudio 'pulseaudio-devel') qt5-devel range-v3 libva-devel"
-depends="qt5-imageformats qt5>=5.11.3<5.11.4"
+ $(vopt_if pulseaudio 'pulseaudio-devel') qt5-devel range-v3 libva-devel
+ rapidjson liblz4-devel rlottie-devel MesaLib-devel"
+depends="qt5-imageformats qt5>=5.13.2<5.13.3"
 short_desc="Telegram Desktop messaging app"
 maintainer="John <johnz@posteo.net>"
 license="GPL-3.0-or-later WITH OpenSSL"
@@ -29,41 +30,31 @@ distfiles="https://github.com/telegramdesktop/tdesktop/archive/v${version}.tar.g
  https://github.com/mapbox/variant/archive/${_variant_commit}.tar.gz
  https://github.com/telegramdesktop/crl/archive/${_crl_commit}.tar.gz
  https://github.com/catchorg/Catch2/archive/${_Catch_commit}.tar.gz"
-checksum="77f4cf6507d1ebc26eaef472aa4817cc57a77c5e3065f6b2afa294530f0633a1
- 9c250f24c0f1775daefb2967c2a25be1d10ea35e72928256aec3f469e576bac4
+checksum="68bb6c3d007fe21847286815f22c2532a7cf9c247dc2781d749ebeb40f02ed99
+ bb75188b900907a5b00594ad3ddb78195c8d1fdc144e5a458b314dd666eba996
  be81db4ab1b57102a0fa1cd0c4a6469294eb9daf24294347592245b754f65ff6
  aa794dfefe0a90501587e36d977b958d0df888503117a8d9aa43dc14f8526d9d
- 0f4143814b17d61d09c6a7fb6764ce74756ec14c0aab94cd65758f7b5a6d2928
+ 9ab12f23916a66665dce9b3baf16594886322f426516d34e2166e7057d78e18e
  d24e6d9df2b8aa5739d3b9077c6b0ff0ef4d5ef8acc52c3a57e32893854d8d18"
-
-build_options="clang pulseaudio"
+build_options="pulseaudio"
 build_options_default="pulseaudio"
 
 CXXFLAGS="-DTDESKTOP_API_ID=209235 -DTDESKTOP_API_HASH=169ee702e1df4b6e66d80311db36cc43"
 
-if [ "$build_option_clang" ]; then
-	CFLAGS="-fPIE -fPIC -fstack-protector-strong"
-	CXXFLAGS+="-fPIE -fPIC -fstack-protector-strong"
-	LDFLAGS="-pie"
-	hostmakedepends+=" clang"
-	configure_args+=" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
-	nocross=yes
-fi
-
 case $XBPS_TARGET_MACHINE in
-	i686*) nodebug=yes;; # ENOMEM
-	mips*) broken="unsupported";;
-esac
-
-case $XBPS_TARGET_MACHINE in
-	*-musl) makedepends+=" libexecinfo-devel" ;;
-esac
-
-case "$XBPS_TARGET_MACHINE" in
-	arm*|mips*)
+	mips*)
+		broken="unsupported"
+		;;
+	ppc64*) ;;
+	armv[56]*|ppc*)
 		makedepends+=" libatomic-devel"
-		configure_args+=" -DUSE_LIBATOMIC=ON" ;;
+		configure_args+=" -DUSE_LIBATOMIC=ON"
+		;;
 esac
+
+if [ "$XBPS_WORDSIZE" -eq 32 ]; then
+	nodebug=yes
+fi
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-devel"

@@ -1,14 +1,14 @@
 # Template file for 'bindfs'
 pkgname=bindfs
-version=1.13.11
+version=1.14.2
 revision=1
 build_style=gnu-configure
 hostmakedepends="pkg-config"
 makedepends="fuse-devel"
 checkdepends="valgrind"
 short_desc="FUSE filesystem for mounting a directory to another location"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://bindfs.org"
 distfiles="https://bindfs.org/downloads/bindfs-${version}.tar.gz"
-checksum=ab0063092badd0e5f1ffaa115ae49cdd26727d243ecf062c502b48c3286fca2b
+checksum=698c8d02b4e77a71e52184bd66869f4d63add4411e76636ee045d154b374c57e

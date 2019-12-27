@@ -1,16 +1,16 @@
 # Template file for 'font-awesome5'
 pkgname=font-awesome5
-version=5.8.1
+version=5.12.0
 revision=1
 archs=noarch
 wrksrc="Font-Awesome-${version}"
 depends="font-util"
 short_desc="Iconic font (version 5)"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="mobinmob <mobinmob@disroot.org>"
 license="OFL-1.1"
 homepage="https://fontawesome.com"
 distfiles="https://github.com/FortAwesome/Font-Awesome/archive/${version}.tar.gz"
-checksum=b0ef5da4323d277695a1335f0fbaf9aa84ff782380082179c0ad37565e110bd8
+checksum=2922efb3b15cd7853655c981d97ffdf2bff37e728c4353497d455c6ee800d53b
 conflicts="font-awesome>=0"
 font_dirs="/usr/share/fonts/OTF"
 

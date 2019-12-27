@@ -1,14 +1,14 @@
 # Template file for 'python3-cairo'
 pkgname=python3-cairo
 version=1.18.1
-revision=1
+revision=2
 wrksrc="pycairo-${version}"
 build_style=python3-module
 hostmakedepends="pkg-config python3"
 makedepends="cairo-devel python3-devel"
 checkdepends="python3-pytest"
 short_desc="Python3 bindings for the cairo graphics library"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later, MPL-1.1"
 homepage="https://pycairo.readthedocs.io/"
 distfiles="https://github.com/pygobject/pycairo/releases/download/v${version}/pycairo-${version}.tar.gz"

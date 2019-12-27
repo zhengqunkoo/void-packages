@@ -1,45 +1,50 @@
 # Template file for 'wps-office'
 pkgname=wps-office
-version=11.1.0.8392
+version=11.1.0.8865
 revision=1
+archs="x86_64"
 create_wrksrc=yes
 makedepends="rpmextract"
 short_desc="Linux office suite with similar appearance to MS Office"
 maintainer="Michael Aldridge <maldridge@voidlinux.org>"
-license="Kingsoft WPS Community License"
-#Full license is at: http://wps-community.org/license.md (Not downloadable)
+license="custom:Kingsoft WPS Community License, custom:EULA"
 homepage="http://wps-community.org"
+checksum="2b7d51dd56516fc5c89a9d4d145e4e201334b000f841d0520e33b0c4a199efe3
+ bd8e8a2f7142710bd3a86e2a978d6371e304dc1cbcf0712d94f21551647bb748"
 allow_unknown_shlibs=yes
 nodebug=yes
 restricted=yes
+skip_extraction="LICENSE_AGREEMENT_OF_KINGSOFT_OFFICE_FOR_LINUX_COMMUNITY.wps"
+
 
 #The programs themselves are PIE, but the error reporter isn't :/
 nopie=yes
 
-_disturl=http://kdl.cc.ksosoft.com/wps-community/download/8392
+_disturl=http://kdl.cc.ksosoft.com/wps-community/download/8865
+_distTar="${pkgname}-${version}-1.x86_64.rpm"
+distfiles="${_disturl}/${_distTar}
+http://wps-community.org/download/licenses/LICENSE_AGREEMENT_OF_KINGSOFT_OFFICE_FOR_LINUX_COMMUNITY.wps"
 
-archs="i686 x86_64"
-if [ "$XBPS_TARGET_MACHINE" = "x86_64" ]; then
-	_arch=x86_64
-	checksum=0a798077441c5b7a2130d65c7dd649373176edcaa094117d03c3de81c16d75b4
-elif [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
-	_arch=i686
-	checksum=74ed9e642d34da8bc93212dbf866071cad52c4bd4563622322ec2116278a362a
-fi
-
-_distTar="${pkgname}-${version}-1.${_arch}.rpm"
-distfiles="${_disturl}/${_distTar}"
 
 do_install() {
 	cp -R ${wrksrc}/* ${DESTDIR}
 }
 
 post_install() {
+
 	#Clean up:
 	#Delete everything under /etc. It contains cron, logrotate and autostart
 	# configuration for the update check and a seperate menu category for the
 	# wps programs that does not work.
 	rm -rf ${DESTDIR}/etc
+
 	#Delete postinst and prerm scripts
 	rm -rf ${DESTDIR}/opt/kingsoft/wps-office/INSTALL
+
+	# Install license and EULA
+	vlicense ${XBPS_SRCDISTDIR}/$pkgname-$version/LICENSE_AGREEMENT_OF_KINGSOFT_OFFICE_FOR_LINUX_COMMUNITY.wps
+	vlicense ${DESTDIR}/opt/kingsoft/wps-office/office6/mui/default/EULA_linux.txt
+
+	# Install privacy notice as documentation
+	vdoc ${DESTDIR}/opt/kingsoft/wps-office/office6/mui/default/Privacy_Linux.txt
 }

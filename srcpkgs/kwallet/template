@@ -1,9 +1,8 @@
 # Template file for 'kwallet'
 pkgname=kwallet
-version=5.57.0
+version=5.65.0
 revision=1
 build_style=cmake
-make_build_args="VERBOSE=1"
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons extra-cmake-modules"
 makedepends="kdoctools-devel gpgmepp-devel libgcrypt-devel
@@ -13,7 +12,7 @@ maintainer="John <johnz@posteo.net>"
 license="LGPL-2.1-or-later"
 homepage="https://projects.kde.org/projects/frameworks/kwallet"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=ad089026f4d5b10d567d0fd56f8b63749acd214fb8029d43187ba42afaf36975
+checksum=93822bded2273e21be16d8c34c5f33939afeba0dd9d4f2f3ff3ae93029f71eb0
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-host-tools qt5-qmake python kdoctools"

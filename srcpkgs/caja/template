@@ -1,7 +1,7 @@
 # Template file for 'caja'
 pkgname=caja
-version=1.22.0
-revision=1
+version=1.22.2
+revision=2
 build_style=gnu-configure
 build_helper="gir"
 configure_args="--disable-static --disable-packagekit --disable-schemas-compile
@@ -13,11 +13,11 @@ makedepends="exempi-devel gvfs-devel libXt-devel libexif-devel libnotify-devel
  mate-desktop-devel"
 depends="dbus gvfs mate-desktop mate-icon-theme"
 short_desc="MATE shell and file manager"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 distfiles="https://pub.mate-desktop.org/releases/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=f4b17d96acfffc88b6e072819704b19dd4166e908cbd56c9fde5c67d70b2a993
+checksum=b09cfd068da3789fddd564afb7117ed874472e97c9d2f3ceb7a7fd8b16c9beb0
 
 build_options="gir"
 build_options_default="gir"

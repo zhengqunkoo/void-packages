@@ -1,6 +1,6 @@
 # Template file for 'gcompris-qt'
 pkgname=gcompris-qt
-version=0.96
+version=0.97
 revision=1
 build_style=cmake
 configure_args="-DQML_BOX2D_LIBRARY=/usr/lib/qt5/qml/Box2D.2.0"
@@ -15,7 +15,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://gcompris.net/index-en.html"
 distfiles="https://gcompris.net/download/qt/src/gcompris-qt-${version}.tar.xz"
-checksum=a2bc2ce6e2687120d7ff2dee036fd85cfed70a793a9cc385b786d054681c8818
+checksum=871c6749def44284d0920d11480728db7983a81b348f7e275ef6662b65508342
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-host-tools qt5-qmake"

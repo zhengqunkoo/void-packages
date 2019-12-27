@@ -1,9 +1,9 @@
 # Template file for 'apache-maven'
 pkgname=apache-maven
-version=3.6.0
+version=3.6.3
 revision=1
 archs=noarch
-hostmakedepends="openjdk"
+hostmakedepends="openjdk8"
 depends="virtual?java-environment"
 short_desc="Software project management and comprehension tool"
 maintainer="Michael Aldridge <maldridge@voidlinux.org>"
@@ -11,8 +11,8 @@ license="Apache-2.0"
 homepage="https://maven.apache.org/"
 distfiles="https://www-us.apache.org/dist/maven/maven-3/${version}/source/${pkgname}-${version}-src.tar.gz
  https://www-us.apache.org/dist/maven/maven-3/${version}/binaries/apache-maven-${version}-bin.tar.gz"
-checksum="b31c0a4d5b76151a0cbef657e332585a6b7604c39754b4ed93c914cbb1c3599e
- 6a1b346af36a1f1a491c1c1a141667c5de69b42e6611d3687df26868bc0f4637"
+checksum="7c1c990ba64dd4f88688120cc2ec93bf33dd500d2a62ae5cd57bd4b7f6335c07
+ 26ad91d751b3a9a53087aefa743f4e16a17741d3915b219cf74112bf87a438c5"
 
 do_build() {
 	./bin/mvn package -DskipTests -Drat.skip=true -Dmaven.repo.local=repo -DdistributionTargetDir=${DESTDIR}/usr/share/${pkgname}/

@@ -1,20 +1,22 @@
 # Template file for 'Thunar'
 pkgname=Thunar
-version=1.8.4
+version=1.8.11
 revision=1
+wrksrc=thunar-${version}
 build_style=gnu-configure
+build_helper="gir"
 configure_args="--enable-gio-unix --enable-gudev
  --enable-exif --enable-pcre --disable-static --enable-notifications"
 hostmakedepends="pkg-config intltool"
 makedepends="exo-devel libexif-devel libgudev-devel libnotify-devel xfce4-panel-devel"
 depends="desktop-file-utils hicolor-icon-theme"
 short_desc="Thunar File Manager"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://docs.xfce.org/xfce/thunar/Start"
 changelog="https://raw.githubusercontent.com/xfce-mirror/thunar/master/NEWS"
-distfiles="https://archive.xfce.org/src/xfce/thunar/${version%.*}/${pkgname}-${version}.tar.bz2"
-checksum=c2bf51da8ddec8f642d67818184ada2ca6e143151e6a45563991db73387a93b0
+distfiles="https://archive.xfce.org/src/xfce/thunar/${version%.*}/thunar-${version}.tar.bz2"
+checksum=18de4db3a40e8e75377fcb5f7d78efdae8659f6a454f1b9cf77bb5f083e1b238
 
 post_install() {
 	rm -rf ${DESTDIR}/usr/lib/systemd
@@ -27,5 +29,7 @@ Thunar-devel_package() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
+		vmove usr/share/gir-1.0
+		vmove usr/share/gtk-doc
 	}
 }

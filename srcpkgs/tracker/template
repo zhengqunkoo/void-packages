@@ -1,7 +1,7 @@
 # Template file for 'tracker'
 pkgname=tracker
-version=2.2.1
-revision=2
+version=2.3.1
+revision=1
 build_style=meson
 build_helper="gir"
 configure_args="-Ddocs=false -Dfts=true -Dfunctional_tests=false
@@ -12,11 +12,15 @@ makedepends="dbus-devel libglib-devel icu-devel json-glib-devel
  libsoup-devel libxml2-devel sqlite-devel NetworkManager-devel
  bash-completion"
 short_desc="Personal search tool and storage system"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://live.gnome.org/Tracker"
 distfiles="${GNOME_SITE}/tracker/${version%.*}/tracker-${version}.tar.xz"
-checksum=0ccef9e67440859119fa6cae230355c1b1b3485ac08122017c9499ad2dada2ff
+checksum=b6748726e465ad2f4d991560634b1fd0df8841f3d981b3b837c4162abedf08a1
+
+if [ "$CROSS_BUILD" ]; then
+	hostmakedepends+=" dbus"
+fi
 
 post_patch() {
 	if [ "$CROSS_BUILD" ]; then

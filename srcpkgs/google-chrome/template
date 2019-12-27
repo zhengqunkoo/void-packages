@@ -1,5 +1,5 @@
 # Template file for 'google-chrome'
-_chromeVersion=74.0.3729.108
+_chromeVersion=79.0.3945.88
 _chromeRevision=1
 _channel=stable
 
@@ -20,7 +20,7 @@ _filename="google-chrome-${_channel}_${_chromeVersion}-${_chromeRevision}_amd64.
 _chromeUrl="${_baseUrl}/${_filename}"
 
 distfiles="$_chromeUrl"
-checksum=2ce1145bd3d11a0b874498602297023eb107eb724667a28b93f5deaf3f9c437f
+checksum=9f2ec10cfc313de21ca7c7100b50e088df741cd20812e76890e3d840ac7584cc
 
 do_extract() {
 	mkdir -p ${DESTDIR}
@@ -31,7 +31,7 @@ do_install() {
 	tar xf data.tar.xz -C ${DESTDIR}
 
 	# Install the icons
-	for size in 16 22 24 32 48 64 128 256; do
+	for size in 16 24 32 48 64 128 256; do
 		# Create the google chrome xdg directory
 		mkdir -p ${DESTDIR}/usr/share/icons/hicolor/${size}x${size}/apps
 

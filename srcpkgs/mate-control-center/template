@@ -1,6 +1,6 @@
 # Template file for 'mate-control-center'
 pkgname=mate-control-center
-version=1.20.4
+version=1.22.2
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static --disable-schemas-compile --disable-update-mimedb"
@@ -10,12 +10,12 @@ makedepends="dbus-glib-devel desktop-file-utils libXScrnSaver-devel libXt-devel
  libmatekbd-devel librsvg-devel mate-desktop-devel mate-menus-devel
  mate-settings-daemon-devel"
 depends="marco mate-icon-theme mate-settings-daemon"
-short_desc="The Control Center for MATE"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+short_desc="Control Center for MATE"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 distfiles="https://pub.mate-desktop.org/releases/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=44255adf12802e69b57afe68bbffe412271a86d6ecfb4dad0985033963b35de6
+checksum=f0c92c5ba17a764f1dac5aeccd2aa17b6271fb64c6a883cab0f8711357946df9
 
 post_install() {
 	rm -f ${DESTDIR}/usr/share/applications/mimeinfo.cache

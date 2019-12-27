@@ -1,6 +1,6 @@
 # Template file for 'linux-tools'
 pkgname=linux-tools
-version=4.20
+version=5.3.1
 revision=1
 wrksrc="linux-${version}"
 build_style=meta
@@ -10,11 +10,11 @@ makedepends="babeltrace-devel binutils-devel eudev-libudev-devel
  ncurses-devel pciutils-devel python-devel slang-devel"
 depends="cpupower-${version}_${revision} perf-${version}_${revision} usbip-${version}_${revision}"
 short_desc="Linux kernel tools meta-pkg"
-maintainer="Rasmus Thomsen <rasmus.thomsen@protonmail.com>"
+maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
-distfiles="${KERNEL_SITE}/kernel/v4.x/linux-${version}.tar.xz"
-checksum=ad0823183522e743972382df0aa08fb5ae3077f662b125f1e599b0b2aaa12438
+distfiles="${KERNEL_SITE}/kernel/v5.x/linux-${version}.tar.xz"
+checksum=9890b5a909d316211d045a95f5f0680e39749f2319cb26d7cd067efaa692f858
 
 subpackages="cpupower libcpupower libcpupower-devel libusbip libusbip-devel usbip perf freefall tmon"
 
@@ -36,6 +36,8 @@ post_extract() {
 	sed -i 's/\$(LIBS)/& $(LDFLAGS)/' tools/power/cpupower/bench/Makefile
 	sed -i 's/SIGCLD/SIGCHLD/g' tools/usb/usbip/src/usbipd.c
 	sed -i 's/^CFLAGS/override &/g' tools/thermal/tmon/Makefile
+	sed -i 's/ \-Werror / /g' tools/build/feature/Makefile \
+		tools/lib/bpf/Makefile
 }
 do_build() {
 	cd ${wrksrc}/tools/perf

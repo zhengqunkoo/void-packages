@@ -1,16 +1,16 @@
 # Template file for 'vscode'
 pkgname=vscode
-version=1.33.1
-revision=1
+version=1.41.1
+revision=2
 hostmakedepends="pkg-config python nodejs-lts yarn"
 makedepends="libxkbfile-devel libsecret-devel"
-depends="GConf libXtst libxkbfile nss dejavu-fonts-ttf"
+depends="libXtst libxkbfile nss dejavu-fonts-ttf"
 short_desc="Microsoft Code for Linux"
 maintainer="shizonic <realtiaz@gmail.com>"
 license="MIT"
 homepage="https://code.visualstudio.com/"
 distfiles="https://github.com/Microsoft/vscode/archive/${version}.tar.gz"
-checksum=ad05888a3e3c723a910f710d1d54958b1b198bd07ae47740a8d2db88f3e017ce
+checksum=72e2ac445cc89feac606f73c263c35d97c3980e6a13059139cc82a383a2fceae
 patch_args="-Np1"
 
 # Due to electron
@@ -23,7 +23,7 @@ nostrip_files="code-oss"
 _mem_limit="--max_old_space_size=4095"
 
 case "$XBPS_TARGET_MACHINE" in
-	i686)   broken="https://build.voidlinux.eu/builders/i686_builder/builds/10486/steps/shell_3/logs/stdio"
+	i686)   broken="https://build.voidlinux.org/builders/i686_builder/builds/10486/steps/shell_3/logs/stdio"
 		    _ARCH="ia32";;
 	x86_64) _ARCH="x64";;
 esac

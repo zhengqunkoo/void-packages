@@ -1,0 +1,12 @@
+# Template file for 'stress-ng'
+pkgname=stress-ng
+version=0.10.14
+revision=1
+build_style=gnu-makefile
+make_use_env=1
+short_desc="Load and stress a computer system"
+maintainer="Leah Neukirchen <leah@vuxu.org>"
+license="GPL-2.0-or-later"
+homepage="http://kernel.ubuntu.com/~cking/stress-ng/"
+distfiles="http://kernel.ubuntu.com/~cking/tarballs/stress-ng/${pkgname}-${version}.tar.xz"
+checksum=d8ba86ddfcf4695389575ae0d426d7681b03d1803bf8f19c691d7e4c73975f51

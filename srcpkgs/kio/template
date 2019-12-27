@@ -1,6 +1,6 @@
 # Template file for 'kio'
 pkgname=kio
-version=5.57.0
+version=5.65.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -13,7 +13,7 @@ maintainer="John <johnz@posteo.net>"
 license="LGPL-2.0-or-later"
 homepage="https://projects.kde.org/projects/frameworks/kio"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=d68151d58f1ed2e0724074c6bca42510dd3e19617baa4b4130198ad3a36a64ab
+checksum=7d3cc0c82e83c082b424a2fe4c796c4c46f233ccd565775babbf6b434fce851b
 
 CXXFLAGS+=" -fpermissive"
 
@@ -28,6 +28,7 @@ kio-devel_package() {
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/qt5/mkspecs
+		vmove usr/lib/qt5/plugins/designer
 		vmove usr/lib/cmake
 		vmove "usr/lib/*.so"
 	}

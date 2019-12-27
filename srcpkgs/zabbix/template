@@ -1,7 +1,7 @@
 # Template file for 'zabbix'
 pkgname=zabbix
 version=4.2.1
-revision=1
+revision=3
 build_style=gnu-configure
 configure_args="--with-libxml2 --with-gnutls --with-libcurl --with-net-snmp
  --with-mysql --enable-server --enable-ipv6 --with-ssh2 --enable-agent
@@ -11,7 +11,7 @@ makedepends="gnutls-devel libcurl-devel libevent-devel libmysqlclient-devel
  libxml2-devel net-snmp-devel pcre-devel"
 depends="fping mysql"
 short_desc="IT Infrastructure components availability and performance monitoring"
-maintainer="maxice8 <thinkabit.ukim@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://www.zabbix.com"
 changelog="https://www.zabbix.com/rn/rn${version}"

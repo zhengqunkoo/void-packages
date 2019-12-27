@@ -1,17 +1,18 @@
 # Template file for 'dhcpcd'
 pkgname=dhcpcd
-version=7.2.0
+version=8.1.4
 revision=1
 build_style=configure
+make_check_target=test
 configure_args="--prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --rundir=/run"
 hostmakedepends="ntp pkg-config"
 makedepends="eudev-libudev-devel"
 short_desc="RFC2131 compliant DHCP client"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Enno Boland <gottox@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://roy.marples.name/projects/dhcpcd"
 distfiles="https://roy.marples.name/downloads/dhcpcd/dhcpcd-${version}.tar.xz"
-checksum=5fff553318a86acb422c63d5d8ba2e8ed73fcd7d1d32c4e5fb6b55797aecb242
+checksum=27a0d1a37aa1aa23e9d3a906455cf8fd56a83589370dfe9da3c5f3225cc4c13d
 lib32disabled=yes
 conf_files=/etc/dhcpcd.conf
 

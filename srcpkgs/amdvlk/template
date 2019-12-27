@@ -1,17 +1,21 @@
 # Template file for 'amdvlk'
 pkgname=amdvlk
-version=2019.Q2.2
+version=2019.Q4.4
 revision=1
-_llpc_commit=d1c1a55cfa58147c4814929e21038d30e6d48429
-_xgl_commit=54194f5ebb7d1d6b44b9eb87217041f44e08f789
-_pal_commit=14045067091d226072437527359a54c8b8e898eb
-_llvm_commit=1ca248e6fc6d4d15491756f92f4da139222ef3ca
-_wsa_commit=f558403d3292039de4d17334e562bda58abfc72c
+_llpc_commit=dffcaf4565b4153c8cbff64847efbc0f9fb835f9
+_xgl_commit=83c89cd727653c4514e2abe30e1633220fdb666e
+_pal_commit=5d72cf9890fe2fbb1b87eecc497114e04afaa277
+_llvm_project_commit=40fbaf4c5446a361269c241d9112fff26575b5d0
+_spvgen_commit=f1bc2ba988273c3724afffe72fe9cd933a022ce7
+_MetroHash_commit=2b6fee002db6cc92345b02aeee963ebaaf4c0e2f
+_CWPack_commit=b601c88aeca7a7b08becb3d32709de383c8ee428
 archs="i686* x86_64*"
 create_wrksrc=yes
 build_wrksrc="xgl"
 build_style=cmake
-configure_args="-DBUILD_WAYLAND_SUPPORT=ON -DBUILD_WSA=ON"
+configure_args="-DBUILD_WAYLAND_SUPPORT=ON
+ -DXGL_METROHASH_PATH=../../metrohash
+ -DXGL_CWPACK_PATH=../../cwpack"
 hostmakedepends="pkg-config python3 perl"
 makedepends="libxml2-devel xorg-server-devel libXrandr-devel"
 depends="vulkan-loader"
@@ -23,27 +27,30 @@ distfiles="https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-${version}.tar.gz
  https://github.com/GPUOpen-Drivers/llpc/archive/${_llpc_commit}.tar.gz
  https://github.com/GPUOpen-Drivers/xgl/archive/${_xgl_commit}.tar.gz
  https://github.com/GPUOpen-Drivers/pal/archive/${_pal_commit}.tar.gz
- https://github.com/GPUOpen-Drivers/llvm/archive/${_llvm_commit}.tar.gz
- https://github.com/GPUOpen-Drivers/wsa/archive/${_wsa_commit}.tar.gz"
-checksum="71f2ab42133574551b1a808a291a151e2339dfd69783d038a073da4172423a35
- eabfa149ffb20e41a08f343511949173db3dab4e5fb5d638173ef3c3986ee0c6
- cfa5992007f4cc619b59953a4f4ca5fbcc30d3e1ed48782c29948c80125dc22d
- c4c8b38d7432a0f1d4697eb68abd7c9aedff1e2ea78ee948a9ff9cf26f8ac1c6
- afc2c8b5ae9cef34f032ec250955a3c5db7eea732879d19550b01d97a762510e
- b23e9453fa7b14bb13157fb645936ec74b18b12cdef301758452a92b23f27705"
+ https://github.com/GPUOpen-Drivers/llvm-project/archive/${_llvm_project_commit}.tar.gz
+ https://github.com/GPUOpen-Drivers/spvgen/archive/${_spvgen_commit}.tar.gz
+ https://github.com/GPUOpen-Drivers/MetroHash/archive/${_MetroHash_commit}.tar.gz
+ https://github.com/GPUOpen-Drivers/CWPack/archive/${_CWPack_commit}.tar.gz"
+checksum="2ee126576e8b68edcdaf1aa149f29a3fd24961ea2038cb635608181e94c00a47
+ 0e7e5028a437a8997bf1487d4b4a4dda6eac4ad492e1f1a68eb5c3564a2e524b
+ f48ca6128b2a1f5070337c8eaa314d72fcd832dc6733b553e2b5e75a483bc843
+ fbf9f14ff77fcc08013e41ad3d93964553f9e68dac9e8d5fc86cbe0ca2a12fdb
+ 6f469cac7c2deaff595cd689a83067da6cfbee0f97362f6fa9f6c50b5bb23b56
+ 77a4cad8691960b825e86b624bb5433f5098b8a49cb0d758e17c6d59e25a9361
+ e8ecf026584dd953e39c3abba2eb04d28b28ed4577482ee70265f0d421fef398
+ 58ca397f33d62bcfecaecd89eb4ad466a6c33e1c619e5cf742822074f1f7d664"
 nocross=yes
-
-case $XBPS_TARGET_MACHINE in
-	*-musl) makedepends+=" rand48_r-devel"
-esac
+lib32files="/usr/share/vulkan/icd.d/amd_icd32.json"
 
 post_extract() {
 	mv ${wrksrc}/AMDVLK-v-${version} ${wrksrc}/AMDVLK
 	mv ${wrksrc}/xgl-${_xgl_commit} ${wrksrc}/xgl
 	mv ${wrksrc}/pal-${_pal_commit} ${wrksrc}/pal
 	mv ${wrksrc}/llpc-${_llpc_commit} ${wrksrc}/llpc
-	mv ${wrksrc}/llvm-${_llvm_commit} ${wrksrc}/llvm
-	mv ${wrksrc}/wsa-${_wsa_commit} ${wrksrc}/wsa
+	mv ${wrksrc}/llvm-project-${_llvm_project_commit} ${wrksrc}/llvm-project
+	mv ${wrksrc}/spvgen-${_spvgen_commit} ${wrksrc}/spvgen
+	mv ${wrksrc}/MetroHash-${_MetroHash_commit} ${wrksrc}/metrohash
+	mv ${wrksrc}/CWPack-${_CWPack_commit} ${wrksrc}/cwpack
 }
 
 pre_configure() {
@@ -60,6 +67,7 @@ do_install() {
 		i686*|mips*|arm*|ppc|ppc-musl)
 			vinstall build/icd/amdvlk32.so 644 usr/lib/
 			vinstall ${wrksrc}/AMDVLK/json/Redhat/amd_icd32.json 644 usr/share/vulkan/icd.d/
+			vsed -i ${DESTDIR}/usr/share/vulkan/icd.d/amd_icd32.json -e 's#/usr/lib/#/usr/lib32/#g'
 			;;
 		*)
 			vinstall build/icd/amdvlk64.so 644 usr/lib/
@@ -67,6 +75,5 @@ do_install() {
 			vsed -i ${DESTDIR}/usr/share/vulkan/icd.d/amd_icd64.json -e 's#/usr/lib64/#/usr/lib/#g'
 			;;
 	esac
-	vinstall build/wsa/wayland/libamdgpu_wsa_wayland.so 644 usr/lib/
 	vlicense ${wrksrc}/AMDVLK/LICENSE.txt
 }

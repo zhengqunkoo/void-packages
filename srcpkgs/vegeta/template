@@ -1,8 +1,8 @@
 # Template file for 'vegeta'
 pkgname=vegeta
-version=12.3.0
+version=12.7.0
 revision=1
-wrksrc=${pkgname}-cli-v${version}
+wrksrc=${pkgname}-${version}
 build_style=go
 go_import_path=github.com/tsenart/$pkgname
 hostmakedepends="dep"
@@ -10,8 +10,8 @@ short_desc="HTTP load testing tool"
 maintainer="Frank Steinborn <steinex@nognu.de>"
 license="MIT"
 homepage="https://github.com/tsenart/vegeta"
-distfiles="https://$go_import_path/archive/cli/v$version.tar.gz"
-checksum=becfcdd173e288325e0882734a9ddf2352448f50b5a83a4c0d7d0eecaa03a0d0
+distfiles="https://$go_import_path/archive/v$version.tar.gz"
+checksum=0e6882d2044e8dc1979f4cd2d96ccbfc47db8ac575f66ebf1020f98d702988a9
 
 pre_build() {
 	cd $GOSRCPATH

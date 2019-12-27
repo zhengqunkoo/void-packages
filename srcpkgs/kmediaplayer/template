@@ -1,6 +1,6 @@
 # Template file for 'kmediaplayer'
 pkgname=kmediaplayer
-version=5.57.0
+version=5.65.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -11,7 +11,7 @@ maintainer="John <johnz@posteo.net>"
 license="X11"
 homepage="https://projects.kde.org/projects/frameworks/kmediaplayer"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/portingAids/${pkgname}-${version}.tar.xz"
-checksum=521dcb4b3f9a67203e9eac27b8d777cb22557861b9fae0006c2aecda96d9bad4
+checksum=bbab29b71d07ec736b842abc54a67441cb89b25b81e957bd8a95c1550f95c673
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-host-tools qt5-qmake python"

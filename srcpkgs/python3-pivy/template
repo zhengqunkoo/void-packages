@@ -1,7 +1,7 @@
 # Template file for 'python3-pivy'
 pkgname=python3-pivy
 version=0.6.4
-revision=1
+revision=2
 wrksrc="Coin3D-${pkgname#python3-}-a84100beff22"
 build_style=python3-module
 pycompile_module="pivy"
@@ -14,6 +14,11 @@ homepage="https://bitbucket.org/Coin3D/pivy"
 distfiles="https://bitbucket.org/Coin3D/pivy/get/${version}.tar.gz"
 checksum=2ee684dbf0f52c05b491c5423013fd82e679614bffee23641485248c8a790c4e
 nocross="require coin-config script"
+
+case "$XBPS_TARGET_MACHINE" in
+	ppc64*);;
+	ppc*) broken="{standard input}:3376761: Error: operand out of range";;
+esac
 
 post_extract() (
 	# use setup_old.py until have Coin with cmake support

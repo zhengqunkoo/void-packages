@@ -1,6 +1,6 @@
 # Template file for 'opensmtpd'
 pkgname=opensmtpd
-version=6.4.1p2
+version=6.6.1p1
 revision=1
 build_style=gnu-configure
 configure_args="--sysconfdir=/etc/smtpd --sbindir=/usr/bin
@@ -21,18 +21,18 @@ hostmakedepends="automake libtool pkg-config bison"
 makedepends="zlib-devel libressl-devel libevent-devel db-devel libasr-devel"
 depends="ca-certificates"
 conf_files="/etc/smtpd/smtpd.conf /etc/smtpd/aliases"
-provides="smtp-forwarder-0_1 smtp-server-0_1"
-replaces="smtp-forwarder>=0 smtp-server>=0"
 short_desc="Free implementation of the server-side SMTP protocol"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
-license="BSD, ISC, MIT"
+license="BSD-3-Clause, ISC, MIT"
 homepage="https://www.opensmtpd.org"
 distfiles="https://www.opensmtpd.org/archives/${pkgname}-${version}.tar.gz"
-checksum=b69b84934bcc4893ca334504411cd47f86ea04ac5e971a5746d44c473ac5f732
+checksum=eb1bedbfb23d9f08f509d92d8efcaf51d56fb2f44492f40ec059d41124a2f1d9
+provides="smtp-forwarder-0_1 smtp-server-0_1"
+replaces="smtp-forwarder>=0 smtp-server>=0"
+system_accounts="_smtpd _smtpq"
 
 CFLAGS=-D_DEFAULT_SOURCE
 
-system_accounts="_smtpd _smtpq"
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) configure_args+=" --with-libfts=${XBPS_CROSS_BASE}/usr"

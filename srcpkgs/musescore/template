@@ -1,11 +1,11 @@
 # Template file for 'musescore'
 pkgname=musescore
-version=3.0.5
+version=3.3.4
 revision=1
 wrksrc="MuseScore-${version}"
 build_style=gnu-makefile
-make_build_target="PREFIX=/usr release"
-make_install_target="-C build.release install"
+make_build_args="PREFIX=/usr USE_SYSTEM_FREETYPE=ON"
+make_install_args="-C build.release"
 hostmakedepends="cmake pkg-config"
 makedepends="jack-devel lame-devel libsndfile-devel portaudio-devel
  portmidi-devel pulseaudio-devel qt5-declarative-devel qt5-script-devel
@@ -18,7 +18,7 @@ maintainer="Brian Olsen <bnolsen@comcast.net>"
 license="GPL-2.0-or-later"
 homepage="https://musescore.org/"
 distfiles="https://github.com/musescore/MuseScore/archive/v${version}.tar.gz"
-checksum=f3fba156b3e477dc8a626c2eee67376be1a9cb703501b2f2426f181c1eefa7b6
+checksum=ab8bade6c7eec6a9ae03f435cad65e79c4ca031d19020aa6e2a4da2868f49a2a
 
 nocross="genManual: cannot execute binary file: Exec format error"
 

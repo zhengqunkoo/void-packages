@@ -1,8 +1,9 @@
 # Template file for 'atril'
 pkgname=atril
-version=1.20.3
+version=1.22.3
 revision=1
 build_style=gnu-configure
+build_helper="gir"
 configure_args="--disable-schemas-compile --enable-djvu
  --enable-dvi --enable-t1lib --enable-pixbuf --enable-comics --enable-xps
  --disable-static $(vopt_enable gir introspection)"
@@ -13,16 +14,14 @@ makedepends="djvulibre-devel libSM-devel libcaja-devel libgxps-devel
  mate-desktop-devel mate-icon-theme poppler-glib-devel webkit2gtk-devel"
 depends="dbus mate-desktop mate-icon-theme"
 short_desc="Simply a document viewer for MATE"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 distfiles="https://pub.mate-desktop.org/releases/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=79dbcdf663a7a40194ece1b1ac3304a35b6828b0a68eed286c0e9c319dc77903
+checksum=3a02d67eff090bf368fd5909640111ee2f9e69c768a56307f52d37ee0ef7151a
 
 build_options="gir"
-if [ -z "$CROSS_BUILD" ]; then
-	build_options_default="gir"
-fi
+build_options_default="gir"
 
 libatril_package() {
 	short_desc+=" - runtime library"

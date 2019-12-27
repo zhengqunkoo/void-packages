@@ -1,6 +1,6 @@
 # Template file for 'python-yaml'
 pkgname=python-yaml
-version=3.13
+version=5.2
 revision=2
 wrksrc="PyYAML-${version}"
 build_style=python-module
@@ -8,11 +8,11 @@ pycompile_module="yaml"
 hostmakedepends="python-setuptools python3-setuptools"
 makedepends="libyaml-devel python-devel python3-devel"
 short_desc="YAML parser and emitter for Python2"
-maintainer="Juan RP <xtraeme@voidlinux.org>"
+maintainer="Peter Bui <pbui@github.bx612.space>"
 license="MIT"
 homepage="http://pyyaml.org/wiki/PyYAML"
 distfiles="${PYPI_SITE}/P/PyYAML/PyYAML-${version}.tar.gz"
-checksum=3ef3092145e9b70e3ddd2c7ad59bdd0252a94dfe3949721633e41344de00a6bf
+checksum=c0ee8eca2c582d29c3c2ec6e2c4f703d1b7f1fb10bc72317355a746057e7346c
 
 do_check() {
 	python3 setup.py test
