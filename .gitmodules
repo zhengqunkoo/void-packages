@@ -1,0 +1,3 @@
+[submodule "srcpkgs/firefox-esr/firefox-patches"]
+	path = srcpkgs/firefox-esr/firefox-patches
+	url = https://github.com/glacambre/firefox-patches.git
